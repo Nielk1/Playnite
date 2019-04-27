@@ -23,7 +23,8 @@ namespace SteamLibrary
     public enum SteamIdSource
     {
         Name,
-        LocalUser
+        LocalUser,
+        ClientUser
     }
 
     public class SteamLibrarySettings : ISettings

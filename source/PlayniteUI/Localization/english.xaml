@@ -608,4 +608,5 @@ Note that Account Name option only works accounts that have public visibility.</
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
+    <sys:String x:Key="LOCSteamClientUser">Steam Client User</sys:String>
 </ResourceDictionary>

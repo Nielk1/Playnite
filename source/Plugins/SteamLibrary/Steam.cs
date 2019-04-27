@@ -17,6 +17,11 @@ namespace SteamLibrary
             get => Path.Combine(InstallationPath, "config", "loginusers.vdf");
         }
 
+        public static string AppCachePath
+        {
+            get => Path.Combine(InstallationPath, "appcache", "appinfo.vdf");
+        }
+
         public static string ClientExecPath
         {
             get
@@ -71,6 +76,40 @@ namespace SteamLibrary
                 }
 
                 return string.Empty;
+            }
+        }
+        public static Int32 SteamPID
+        {
+            get
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam\ActiveProcess"))
+                {
+                    if (key?.GetValueNames().Contains("pid") == true)
+                    {
+                        return (Int32)key.GetValue("pid");
+                    }
+                }
+                return 0;
+            }
+        }
+
+        public static UInt32 CurrentUserID
+        {
+            get
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam\ActiveProcess"))
+                {
+                    if (key?.GetValueNames().Contains("ActiveUser") == true)
+                    {
+                        object val = key.GetValue("ActiveUser");
+                        if (val != null)
+                        {
+                            return (UInt32)(Int32)val;
+                        }
+                    }
+                }
+
+                return 0;
             }
         }
 

@@ -334,6 +334,21 @@ namespace SteamLibrary
                 userName = settings.AccountId.ToString();
             }
 
+            if (settings.IdSource == SteamIdSource.ClientUser
+             && Steam.SteamPID > 0 // steam is running
+             && new SteamID(Steam.CurrentUserID).ToString().Equals(new SteamID(settings.AccountId).ToString())) // logged in user is the target user
+            {
+                SteamAppInfoDataFile dataFile = SteamAppInfoDataFile.Read(Steam.AppCachePath); // parse all possible appids from appinfo.vdf in steam cache
+                List<Game> retVal = new List<Game>();
+                foreach(var chunk in dataFile.chunks)
+                {
+                    // typefilter check and if possible "already known" check appids for speed reasons
+                    // ownership check all appids
+                    //SteamInteropClient
+                }
+                return retVal;
+            }
+
             if (settings.IsPrivateAccount)
             {
                 return GetLibraryGames(userName, settings.ApiKey);

@@ -59,6 +59,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <RadioButton Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"
@@ -73,10 +74,21 @@
                           VerticalAlignment="Center" HorizontalAlignment="Left" />
 
                 <RadioButton Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"
+                             Content="{DynamicResource LOCSteamClientUser}" Name="RadioSteamLibAccount2" GroupName="steamsource"
+                             IsChecked="{Binding IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.ClientUser}}"/>
+
+                <ComboBox Grid.Column="1" Grid.Row="1" Margin="5" Width="200"
+                          IsReadOnly="True" DisplayMemberPath="AccountName"
+                          SelectedValuePath="Id" SelectedValue="{Binding AccountId}"
+                          ItemsSource="{Binding SteamUsers}"
+                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibClientUser}"                          
+                          VerticalAlignment="Center" HorizontalAlignment="Left" />
+                
+                <RadioButton Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"
                              Content="{DynamicResource LOCSteamCustomUrlName}" Name="RadioSteamLibName" GroupName="steamsource"
                              IsChecked="{Binding IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"/>
 
-                <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Width="200"
+                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Width="200"
                          Text="{Binding AccountName}" 
                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
                          HorizontalAlignment="Left" VerticalAlignment="Center" />
