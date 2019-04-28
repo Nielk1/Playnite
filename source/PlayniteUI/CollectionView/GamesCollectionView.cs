@@ -186,6 +186,17 @@ namespace PlayniteUI
                 favoriteResult = true;
             }
 
+            // ------------------ New
+            bool newResult = false;
+            if (filterSettings.New && game.New)
+            {
+                newResult = true;
+            }
+            else if (!filterSettings.New)
+            {
+                newResult = true;
+            }
+
             // ------------------ Providers
             bool librariesFilter = false;
             if (filterSettings.Libraries?.Any() == true)
@@ -433,6 +444,7 @@ namespace PlayniteUI
             return installedResult &&
                 hiddenResult &&
                 favoriteResult &&
+                newResult &&
                 nameResult &&
                 librariesFilter &&
                 genreResult &&

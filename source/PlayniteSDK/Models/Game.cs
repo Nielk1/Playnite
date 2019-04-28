@@ -126,7 +126,25 @@ namespace Playnite.SDK.Models
             }
         }
 
-        
+        private bool @new;
+        /// <summary>
+        /// Gets or sets avlue indicating if the game is marked as favorite in library.
+        /// </summary>
+        public bool New
+        {
+            get
+            {
+                return @new;
+            }
+
+            set
+            {
+                @new = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private string icon;
         /// <summary>
         /// Gets or sets game icon. Local file path, HTTP URL or database file ids are supported.

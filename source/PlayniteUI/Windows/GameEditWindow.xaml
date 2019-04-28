@@ -340,6 +340,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     
                     <!-- Last Played -->
@@ -400,19 +401,27 @@
                     <CheckBox Grid.Column="2" Grid.Row="6" Margin="3"
                               IsChecked="{Binding EditingGame.Favorite}" />
 
-                    <Canvas Height="20" Grid.Column="0" Grid.Row="7" />
+                    <!-- New -->
+                    <TextBlock Grid.Column="1" Grid.Row="7" Text="{DynamicResource LOCGameNewTitle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="7"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseNewChanges}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="7" Margin="3"
+                              IsChecked="{Binding EditingGame.New}" />
+
+                    <Canvas Height="20" Grid.Column="0" Grid.Row="8" />
 
                     <!-- Added -->
-                    <TextBlock Grid.Column="1" Grid.Row="8" Text="{DynamicResource LOCAddedLabel}"/>
-                    <CheckBox Grid.Column="0" Grid.Row="8"
+                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCAddedLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="9"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="2" Grid.Row="8"
+                    <DatePicker Grid.Column="2" Grid.Row="9"
                                 SelectedDate="{Binding EditingGame.Added}"/>
 
                     <!-- Modified -->
-                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCModifiedLabel}" />
-                    <TextBlock Grid.Column="2" Grid.Row="9" Margin="3,6,3,6"
+                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{DynamicResource LOCModifiedLabel}" />
+                    <TextBlock Grid.Column="2" Grid.Row="10" Margin="3,6,3,6"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
 
                     <!-- GameId -->

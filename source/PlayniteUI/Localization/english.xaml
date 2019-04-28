@@ -404,6 +404,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Uninstalled</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorite</sys:String>
+    <sys:String x:Key="LOCGameNewTitle">New</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Last Played</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Category</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Description</sys:String>
@@ -541,7 +542,9 @@ You can try these to fix the issue:
 
     <!--Game actions-->
     <sys:String x:Key="LOCFavoriteGame">Add to Favorites</sys:String>
+    <sys:String x:Key="LOCNewGame">Set as New</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Remove from Favorites</sys:String>
+    <sys:String x:Key="LOCRemoveNewGame">Set as not New</sys:String>
     <sys:String x:Key="LOCHideGame">Hide</sys:String>
     <sys:String x:Key="LOCUnHideGame">Show in Library</sys:String>
     <sys:String x:Key="LOCEditGame">Edit...</sys:String>

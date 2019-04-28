@@ -21,6 +21,7 @@ namespace Playnite
         IsInstalled,
         Hidden,
         Favorite,
+        New,
         InstallDirectory,
         Icon,
         Platform,

@@ -31,6 +31,7 @@ namespace PlayniteUI
                 case SortOrder.IsInstalled:
                 case SortOrder.Hidden:
                 case SortOrder.Favorite:
+                case SortOrder.New:
                 case SortOrder.InstallDirectory:
                 case SortOrder.Icon:
                 case SortOrder.Platform:

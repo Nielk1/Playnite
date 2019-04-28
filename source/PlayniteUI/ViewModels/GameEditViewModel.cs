@@ -529,6 +529,22 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useNewChanges;
+        public bool UseNewChanges
+        {
+            get
+            {
+                return useNewChanges;
+            }
+
+            set
+            {
+                useNewChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -558,7 +574,8 @@ namespace PlayniteUI.ViewModels
                     UseCriticScoreChanges ||
                     UseCommunityScoreChanges ||
                     UseHiddenChanges ||
-                    UseFavoriteChanges);
+                    UseFavoriteChanges ||
+                    UseNewChanges);
             }
         }
 
@@ -1311,6 +1328,16 @@ namespace PlayniteUI.ViewModels
                         UseFavoriteChanges = true;
                     }
                     break; ;
+                case nameof(Game.New):
+                    if (Games == null)
+                    {
+                        UseNewChanges = Game.New != EditingGame.New;
+                    }
+                    else
+                    {
+                        UseNewChanges = true;
+                    }
+                    break; ;
                 case nameof(Game.Hidden):
                     if (Games == null)
                     {
@@ -1743,6 +1770,21 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.Favorite = EditingGame.Favorite;
+                }
+            }
+
+            if (UseNewChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.New = EditingGame.New;
+                    }
+                }
+                else
+                {
+                    Game.New = EditingGame.New;
                 }
             }
 

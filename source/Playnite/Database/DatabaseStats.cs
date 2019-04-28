@@ -19,6 +19,7 @@ namespace Playnite.Database
         public int UnInstalled { get; private set; } = 0;
         public int Hidden { get; private set; } = 0;
         public int Favorite { get; private set; } = 0;
+        public int New { get; private set; } = 0;
 
         public int Total
         {
@@ -59,6 +60,7 @@ namespace Playnite.Database
             UnInstalled = 0;
             Hidden = 0;
             Favorite = 0;
+            New = 0;
 
             foreach (var game in database.Games)
             {
@@ -80,6 +82,11 @@ namespace Playnite.Database
                 {
                     Favorite++;
                 }
+
+                if (game.New)
+                {
+                    New++;
+                }
             }
 
             NotifiyAllChanged();
@@ -91,6 +98,7 @@ namespace Playnite.Database
             OnPropertyChanged(nameof(UnInstalled));
             OnPropertyChanged(nameof(Hidden));
             OnPropertyChanged(nameof(Favorite));
+            OnPropertyChanged(nameof(New));
             OnPropertyChanged(nameof(Total));
         }
 
@@ -128,6 +136,11 @@ namespace Playnite.Database
                     Favorite = Favorite + (1 * (update.NewData.Favorite ? 1 : -1));
                 }
 
+                if (update.OldData.New != update.NewData.New)
+                {
+                    New = New + (1 * (update.NewData.New ? 1 : -1));
+                }
+
                 if (update.OldData.IsInstalled != update.NewData.IsInstalled)
                 {
                     Installed = Installed + (1 * (update.NewData.IsInstalled ? 1 : -1));
@@ -139,6 +152,7 @@ namespace Playnite.Database
             OnPropertyChanged(nameof(UnInstalled));
             OnPropertyChanged(nameof(Hidden));
             OnPropertyChanged(nameof(Favorite));
+            OnPropertyChanged(nameof(New));
         }
 
         private void IncrementalUpdate(Game game, int modifier)
@@ -151,6 +165,11 @@ namespace Playnite.Database
             if (game.Favorite)
             {
                 Favorite = Favorite + (1 * modifier);
+            }
+
+            if (game.New)
+            {
+                New = New + (1 * modifier);
             }
 
             if (game.IsInstalled)

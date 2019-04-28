@@ -51,11 +51,13 @@ namespace PlayniteTests
                 Assert.AreEqual(1, stats.Installed);
                 Assert.AreEqual(2, stats.Hidden);
                 Assert.AreEqual(0, stats.Favorite);
+                Assert.AreEqual(0, stats.New);
 
                 var newGame = new Game("Game 2") { Favorite = true };
                 db.Games.Add(newGame);
                 Assert.AreEqual(6, stats.Total);
                 Assert.AreEqual(1, stats.Favorite);
+                Assert.AreEqual(1, stats.New);
 
                 newGame.IsInstalled = true;
                 db.Games.Update(newGame);

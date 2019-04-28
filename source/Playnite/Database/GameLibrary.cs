@@ -82,6 +82,9 @@ namespace Playnite.Database
                 if (existingGame == null)
                 {
                     logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+
+                    newGame.New = true;
+
                     if (!string.IsNullOrEmpty(newGame.Icon))
                     {
                         newGame.Icon = AddNewGameFile(newGame.Icon, newGame.Id, database);

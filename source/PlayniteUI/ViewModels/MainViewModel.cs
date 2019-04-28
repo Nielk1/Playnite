@@ -333,7 +333,10 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
         public RelayCommand<Game> CreateGameShortcutCommand { get; private set; }
         public RelayCommand<Game> ToggleFavoritesCommand { get; private set; }
+        public RelayCommand<Game> ToggleNewCommand { get; private set; }
         public RelayCommand<Game> ToggleVisibilityCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> SetAsNewCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> RemoveAsNewCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
@@ -706,6 +709,11 @@ namespace PlayniteUI.ViewModels
                 GamesEditor.ToggleFavoriteGame(a);
             });
 
+            ToggleNewCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.ToggleNewGame(a);
+            });
+
             ToggleVisibilityCommand = new RelayCommand<Game>((a) =>
             {
                 GamesEditor.ToggleHideGame(a);
@@ -744,6 +752,16 @@ namespace PlayniteUI.ViewModels
             RemoveAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
                 GamesEditor.SetFavoriteGames(a.ToList(), false);
+            });
+
+            SetAsNewCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetNewGames(a.ToList(), true);
+            });
+
+            RemoveAsNewCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetNewGames(a.ToList(), false);
             });
 
             SetAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>

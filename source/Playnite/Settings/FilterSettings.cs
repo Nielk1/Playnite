@@ -45,6 +45,7 @@ namespace Playnite
                     IsUnInstalled ||
                     Hidden ||
                     Favorite ||
+                    New ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
                     !string.IsNullOrEmpty(Series) ||
@@ -267,6 +268,23 @@ namespace Playnite
             }
         }
 
+        private bool @new;
+        public bool New
+        {
+            get
+            {
+                return @new;
+            }
+
+            set
+            {
+                @new = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(New));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
+
         private string series;
         public string Series
         {
@@ -446,6 +464,12 @@ namespace Playnite
             {
                 Favorite = false;
                 filterChanges.Add(nameof(Favorite));
+            }
+
+            if (New != false)
+            {
+                New = false;
+                filterChanges.Add(nameof(New));
             }
 
             if (Series != null)

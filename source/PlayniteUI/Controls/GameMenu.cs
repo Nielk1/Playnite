@@ -400,6 +400,16 @@ namespace PlayniteUI.Controls
 
                 Items.Add(hideItem);
 
+                // Toggle New
+                var newItem = new MenuItem()
+                {
+                    Header = Game.New ? resources.FindString("LOCRemoveNewGame") : resources.FindString("LOCNewGame"),
+                    Command = model.ToggleNewCommand,
+                    CommandParameter = Game
+                };
+
+                Items.Add(newItem);
+
                 // Edit
                 var editItem = new MenuItem()
                 {

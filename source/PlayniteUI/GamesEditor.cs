@@ -285,6 +285,34 @@ namespace PlayniteUI
             }
         }
 
+        public void SetNewGame(Game game, bool state)
+        {
+            game.New = state;
+            database.Games.Update(game);
+        }
+
+        public void SetNewGames(List<Game> games, bool state)
+        {
+            foreach (var game in games)
+            {
+                SetNewGame(game, state);
+            }
+        }
+
+        public void ToggleNewGame(Game game)
+        {
+            game.New = !game.New;
+            database.Games.Update(game);
+        }
+
+        public void ToggleNewGame(List<Game> games)
+        {
+            foreach (var game in games)
+            {
+                ToggleNewGame(game);
+            }
+        }
+
         public void RemoveGame(Game game)
         {
             if (game.IsInstalling || game.IsRunning || game.IsLaunching || game.IsUninstalling)
